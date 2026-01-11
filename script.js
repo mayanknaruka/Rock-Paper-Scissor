@@ -22,9 +22,10 @@ function getHumanChoice() {
 
 // console.log(getHumanChoice());
 
-// step 6:
- 
-      
+// step 6: Write the logic to play the entire game
+
+function playGame() {
+   
 // Step 4: Declare the players score variables
 
 let humanScore = 0
@@ -70,5 +71,18 @@ else if (humanChoice  === computerChoice){
         console.log("You loose, paper beats scissor");
         computerScore++
   }
+
+  }
+
+   for (let i = 0; i <= 5; i++) {
+        console.log("Round" + i);    
+}
+      
+      
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
+console.log("score => Human:" );
 
 }

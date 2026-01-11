@@ -74,15 +74,32 @@ else if (humanChoice  === computerChoice){
 
   }
 
+  // Play 5 rounds
    for (let i = 0; i <= 5; i++) {
         console.log("Round" + i);    
-}
-      
-      
+
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
 playRound(humanSelection, computerSelection);
-console.log("score => Human:" );
+console.log("score => Human:" + humanScore + "|computer " + computerScore);
 
+ }
+
+//   final result
+
+if(humanScore > computerScore){
+   console.log("whoo! you win the game");  
 }
+
+else if(humanScore < computerScore ){
+   console.log("Whoo! you loose the game ");
+     
+}
+else{
+    console.log("its a drwa");
+    
+}
+}
+
+playGame()

@@ -13,7 +13,7 @@ function getComputerChoice() {
         return "scissor"
     }
 }
-  
+
 //    Step 3: Write the logic to get the human choice
 
 function getHumanChoice() {
@@ -25,81 +25,80 @@ function getHumanChoice() {
 // step 6: Write the logic to play the entire game
 
 function playGame() {
-   
-// Step 4: Declare the players score variables
 
-let humanScore = 0
-let computerScore = 0
+    // Step 4: Declare the players score variables
 
-// Step 5: Write the logic to play a single round
-   
-function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase()
+    let humanScore = 0
+    let computerScore = 0
 
+    // Step 5: Write the logic to play a single round
 
-  if (humanChoice==="rock" && computerChoice==="scissor") {
-    console.log("You win, rock beats scissors");
-    humanScore++
-  }
-  else if (humanChoice==="paper"&& computerChoice==="rock"){
-        console.log("You win, paper beats rock");
-        humanScore++
-  }
-  
-  else if (humanChoice==="scissor"&& computerChoice==="paper"){
-        console.log("You win, scissor beats paper");
-        humanScore++
-  }
-
-else if (humanChoice  === computerChoice){
-        console.log(`It's a tie! Both choose ${humanChoice}`);
-        humanScore++
-  }
-  
-  else if (humanChoice==="scissor"&& computerChoice==="rock"){
-        console.log("You loose, scissor beats rock");
-        computerScore++
-  }
+    function playRound(humanChoice, computerChoice) {
+        humanChoice = humanChoice.toLowerCase()
 
 
-    else if (humanChoice==="rock"&& computerChoice==="paper"){
-        console.log("You loose, rock beats paper");
-        computerScore++
-  }
+        if (humanChoice === "rock" && computerChoice === "scissor") {
+            console.log("You win, rock beats scissors");
+            humanScore++
+        }
+        else if (humanChoice === "paper" && computerChoice === "rock") {
+            console.log("You win, paper beats rock");
+            humanScore++
+        }
 
-    else if (humanChoice==="paper"&& computerChoice==="scissor"){
-        console.log("You loose, paper beats scissor");
-        computerScore++
-  }
+        else if (humanChoice === "scissor" && computerChoice === "paper") {
+            console.log("You win, scissor beats paper");
+            humanScore++
+        }
 
-  }
+        else if (humanChoice === computerChoice) {
+            console.log(`It's a tie! Both choose ${humanChoice}`);
+        }
 
-  // Play 5 rounds
-   for (let i = 0; i <= 5; i++) {
-        console.log("Round" + i);    
+        else if (humanChoice === "scissor" && computerChoice === "rock") {
+            console.log("You loose, scissor beats rock");
+            computerScore++
+        }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
-console.log("score => Human:" + humanScore + "|computer " + computerScore);
+        else if (humanChoice === "rock" && computerChoice === "paper") {
+            console.log("You loose, rock beats paper");
+            computerScore++
+        }
 
- }
+        else if (humanChoice === "paper" && computerChoice === "scissor") {
+            console.log("You loose, paper beats scissor");
+            computerScore++
+        }
 
-//   final result
+    }
 
-if(humanScore > computerScore){
-   console.log("whoo! you win the game");  
-}
+    // Play 5 rounds
+    for (let i = 0; i <= 5; i++) {
+        console.log("Round" + i);
 
-else if(humanScore < computerScore ){
-   console.log("Whoo! you loose the game ");
-     
-}
-else{
-    console.log("its a drwa");
-    
-}
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+        console.log("score => Human:" + humanScore + "|computer " + computerScore);
+
+    }
+
+    //   final result
+
+    if (humanScore > computerScore) {
+        console.log("whoo! you win the game");
+    }
+
+    else if (humanScore < computerScore) {
+        console.log("Whoo! you loose the game ");
+
+    }
+    else {
+        console.log("its a draw`");
+
+    }
 }
 
 playGame()

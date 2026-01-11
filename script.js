@@ -25,7 +25,7 @@ function getHumanChoice() {
 
 // console.log(getHumanChoice());
 
-step 6:
+// step 6:
 // Step 4: Declare the players score variables
 
 let humanScore = 0

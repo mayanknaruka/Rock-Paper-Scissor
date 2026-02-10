@@ -102,3 +102,7 @@ function playGame() {
 }
 
 playGame()
+
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorBtn = document.querySelector("#scissor");

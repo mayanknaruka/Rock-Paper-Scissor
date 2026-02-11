@@ -46,3 +46,14 @@ const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
 playRound(humanSelection, computerSelection);
+
+// select button
+const rockBtn = document.querySelector("#rock")
+const paperBtn = document.querySelector("#paper")
+const scissorBtn = document.querySelector("#scissor")
+
+// add event listeners
+
+rockBtn.addEventListener("click", () => {
+    playRound("rock", getComputerChoice())
+})

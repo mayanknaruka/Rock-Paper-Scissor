@@ -1,108 +1,48 @@
 // Step 2: Write the logic to get the computer choice
-
 function getComputerChoice() {
-    let randomNumber = Math.floor((Math.random() * 3))
+    let randomNumber = Math.floor(Math.random() * 3);
 
-    if (randomNumber === 0) {
-        return "rock"
-    }
-    if (randomNumber === 1) {
-        return "paper"
-    }
-    else {
-        return "scissor"
-    }
+    if (randomNumber === 0) return "rock";
+    if (randomNumber === 1) return "paper";
+    return "scissor";
 }
 
-//    Step 3: Write the logic to get the human choice
-
+// Step 3: Write the logic to get the human choice
 function getHumanChoice() {
-    return prompt("Enter your choice rock, paper, scissor: ").toLowerCase()
+    return prompt("Enter your choice rock, paper, scissor: ").toLowerCase();
 }
 
-// console.log(getHumanChoice());
+// Step 4: Declare score variables OUTSIDE so they persist
+let humanScore = 0;
+let computerScore = 0;
 
-// step 6: Write the logic to play the entire game
+// Step 5: Write the logic to play a single round
+function playRound(humanChoice, computerChoice) {
 
-function playGame() {
+    console.log("Human:", humanChoice);
+    console.log("Computer:", computerChoice);
 
-    // Step 4: Declare the players score variables
-
-    let humanScore = 0
-    let computerScore = 0
-
-    // Step 5: Write the logic to play a single round
-
-    function playRound(humanChoice, computerChoice) {
-        humanChoice = humanChoice.toLowerCase()
-
-
-        if (humanChoice === "rock" && computerChoice === "scissor") {
-            console.log("You win, rock beats scissors");
-            humanScore++
-        }
-        else if (humanChoice === "paper" && computerChoice === "rock") {
-            console.log("You win, paper beats rock");
-            humanScore++
-        }
-
-        else if (humanChoice === "scissor" && computerChoice === "paper") {
-            console.log("You win, scissor beats paper");
-            humanScore++
-        }
-
-        else if (humanChoice === computerChoice) {
-            console.log(`It's a tie! Both choose ${humanChoice}`);
-        }
-
-        else if (humanChoice === "scissor" && computerChoice === "rock") {
-            console.log("You loose, scissor beats rock");
-            computerScore++
-        }
-
-
-        else if (humanChoice === "rock" && computerChoice === "paper") {
-            console.log("You loose, rock beats paper");
-            computerScore++
-        }
-
-        else if (humanChoice === "paper" && computerChoice === "scissor") {
-            console.log("You loose, paper beats scissor");
-            computerScore++
-        }
-
+    if (humanChoice === computerChoice) {
+        console.log(`It's a tie! Both chose ${humanChoice}`);
     }
-
-    // Play 5 rounds
-    for (let i = 0; i <= 5; i++) {
-        console.log("Round" + i);
-
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);
-        console.log("score => Human:" + humanScore + "|computer " + computerScore);
-
-    }
-
-    //   final result
-
-    if (humanScore > computerScore) {
-        console.log("whoo! you win the game");
-    }
-
-    else if (humanScore < computerScore) {
-        console.log("Whoo! you loose the game ");
-
+    else if (
+        (humanChoice === "rock" && computerChoice === "scissor") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissor" && computerChoice === "paper")
+    ) {
+        console.log("You win this round!");
+        humanScore++;
     }
     else {
-        console.log("its a draw`");
-
+        console.log("You lose this round!");
+        computerScore++;
     }
+
+    console.log(`Score → Human: ${humanScore} | Computer: ${computerScore}`);
 }
 
-playGame()
+// Now manually play ONE round (no loop)
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
 
-const rockBtn = document.querySelector("#rock");
-const paperBtn = document.querySelector("#paper");
-const scissorBtn = document.querySelector("#scissor");
+playRound(humanSelection, computerSelection);

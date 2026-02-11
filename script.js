@@ -1,59 +1,73 @@
-// Step 2: Write the logic to get the computer choice
+// Computer choice
 function getComputerChoice() {
-    let randomNumber = Math.floor(Math.random() * 3);
+    const randomNumber = Math.floor(Math.random() * 3);
 
     if (randomNumber === 0) return "rock";
     if (randomNumber === 1) return "paper";
     return "scissor";
 }
 
-// Step 3: Write the logic to get the human choice
-function getHumanChoice() {
-    return prompt("Enter your choice rock, paper, scissor: ").toLowerCase();
-}
-
-// Step 4: Declare score variables OUTSIDE so they persist
+// Scores (global so they persist)
 let humanScore = 0;
 let computerScore = 0;
 
-// Step 5: Write the logic to play a single round
-function playRound(humanChoice, computerChoice) {
+// Select DOM elements
+const resultsDiv = document.querySelector("#results");
+const scoreDiv = document.querySelector("#score");
 
-    console.log("Human:", humanChoice);
-    console.log("Computer:", computerChoice);
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorBtn = document.querySelector("#scissor");
+
+// Play one round
+function playRound(humanChoice) {
+
+    // Stop game if someone already won
+    if (humanScore === 5 || computerScore === 5) return;
+
+    const computerChoice = getComputerChoice();
+    let roundResult = "";
 
     if (humanChoice === computerChoice) {
-        console.log(`It's a tie! Both chose ${humanChoice}`);
+        roundResult = `It's a tie! Both chose ${humanChoice}`;
     }
     else if (
         (humanChoice === "rock" && computerChoice === "scissor") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissor" && computerChoice === "paper")
     ) {
-        console.log("You win this round!");
+        roundResult = `You win! ${humanChoice} beats ${computerChoice}`;
         humanScore++;
     }
     else {
-        console.log("You lose this round!");
+        roundResult = `You lose! ${computerChoice} beats ${humanChoice}`;
         computerScore++;
     }
 
-    console.log(`Score → Human: ${humanScore} | Computer: ${computerScore}`);
+    // Display round result
+    const roundParagraph = document.createElement("p");
+    roundParagraph.textContent = roundResult;
+    resultsDiv.appendChild(roundParagraph);
+
+    // Update running score
+    scoreDiv.textContent =
+        `Score → Human: ${humanScore} | Computer: ${computerScore}`;
+
+    // Announce winner at 5 points
+    if (humanScore === 5 || computerScore === 5) {
+        const winnerMessage = document.createElement("h3");
+
+        if (humanScore === 5) {
+            winnerMessage.textContent = "🎉 You won the game!";
+        } else {
+            winnerMessage.textContent = "💻 Computer won the game!";
+        }
+
+        resultsDiv.appendChild(winnerMessage);
+    }
 }
 
-// Now manually play ONE round (no loop)
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
-
-// select button
-const rockBtn = document.querySelector("#rock")
-const paperBtn = document.querySelector("#paper")
-const scissorBtn = document.querySelector("#scissor")
-
-// add event listeners
-
-rockBtn.addEventListener("click", () => {
-    playRound("rock", getComputerChoice())
-})
+// Event listeners
+rockBtn.addEventListener("click", () => playRound("rock"));
+paperBtn.addEventListener("click", () => playRound("paper"));
+scissorBtn.addEventListener("click", () => playRound("scissor"));
